@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { create } from "domain";
-import { CreateLabelDto } from "src/dto/createLabelDto";
-import { Labels } from "src/Entities/Labels.entity";
+import { CreateLabelDto } from "../../dto/createLabelDto";
+import { Labels } from "../../Entities/Labels.entity";
 import { Repository } from "typeorm";
 
 @Injectable()

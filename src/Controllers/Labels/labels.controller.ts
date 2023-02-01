@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
-import { CreateLabelDto } from "src/dto/createLabelDto";
+import { CreateLabelDto } from "../../dto/createLabelDto";
 import { LabelsService } from "./labels.service";
 
 @Controller("labels")

@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Patch, Post } from "@nestjs/common";
-import { CreateNewsDto } from "src/dto/createNewsDto";
+import { CreateNewsDto } from "../../dto/createNewsDto";
 import { NewsService } from "./news.service";
 
 @Controller("News")

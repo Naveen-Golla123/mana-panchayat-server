@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateLabelDto } from "src/dto/createLabelDto";
-import { Category } from "src/Entities/Category.entity";
+import { CreateLabelDto } from "../../dto/createLabelDto";
+import { Category } from "../../Entities/Category.entity";
 import { Repository } from "typeorm";
 
 @Injectable()
