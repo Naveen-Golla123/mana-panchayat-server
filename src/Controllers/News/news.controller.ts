@@ -5,9 +5,7 @@ import { NewsService } from "./news.service";
 @Controller("News")
 export class NewsController {
 
-    constructor(private newsService: NewsService) {
-
-    }
+    constructor(private newsService: NewsService) {}
 
     @Get()
     async getAllNews() {
