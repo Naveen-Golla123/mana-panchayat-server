@@ -10,8 +10,8 @@ export class LabelsController {
     }
 
     @Get()
-    getAllLabels() {
-
+    async getAllLabels() {
+        return await this.labelsService.getAllLabels();
     }
 
     @Post()

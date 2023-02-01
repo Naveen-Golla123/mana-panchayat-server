@@ -18,4 +18,8 @@ export class LabelsService {
         return await this.labelsRepository.save(label);
     }
 
+    async getAllLabels(){
+        return await this.labelsRepository.find();
+    }
+
 }

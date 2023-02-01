@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { Category } from "src/Entities/Category.entity";
+import { Category } from "../../Entities/Category.entity";
 import { CategoryController } from "./category.controller";
 import { CategoryService } from "./category.service";
 

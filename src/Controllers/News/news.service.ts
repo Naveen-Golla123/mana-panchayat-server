@@ -12,6 +12,14 @@ export class NewsService {
 
     }
 
+    async getAllNews() {
+        return await this.newsRepository.find();
+    }
+
+    async getNewsById(newsId) {
+        return await this.newsRepository.findBy({id:parseInt(newsId)});
+    }
+
 
     async createNews(createNewsDto: CreateNewsDto) {
         var news = new News();
