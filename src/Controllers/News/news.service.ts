@@ -25,8 +25,8 @@ export class NewsService {
 
     async createNews(file: Express.Multer.File, createNewsDto: CreateNewsDto) {
         var news = new News();
-        console.log(news.id);
-
+        console.log(file);
+        console.log(createNewsDto);
         //upload the file and get the url for the same.
         var uploadedBlobUrl = await this.fileUploader.uploadFile(file);
 

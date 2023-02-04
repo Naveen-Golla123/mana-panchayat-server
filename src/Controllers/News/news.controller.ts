@@ -22,7 +22,7 @@ export class NewsController {
     }
 
     @Patch()
-    @UseGuards(AuthGuard('jwt'))
+    // @UseGuards(AuthGuard('jwt'))
     @UseInterceptors(FileInterceptor('file'))
     async updateNews(@UploadedFile() file: Express.Multer.File,@Body() createNewsDto: CreateNewsDto) {
         console.log(createNewsDto)
