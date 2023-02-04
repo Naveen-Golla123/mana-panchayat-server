@@ -13,7 +13,7 @@ async function bootstrap() {
 
   app.enableCors({
     allowedHeaders: "*",
-    origin: "*"
+    origin: ["https://naveen-golla123.github.io/"]
   });
   // Swagger setup 
   // const config = new DocumentBuilder()
