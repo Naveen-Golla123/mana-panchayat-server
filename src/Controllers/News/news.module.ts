@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { FileUploader } from "src/Shared/FileUploader";
+import { FileUploader } from "../../Shared/FileUploader";
 import { Category } from "../../Entities/Category.entity";
 import { News } from "../../Entities/News.entity";
 import { NewsController } from "./news.controller";
