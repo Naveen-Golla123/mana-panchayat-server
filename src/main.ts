@@ -4,9 +4,9 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
-//Swagger setup 
+// Swagger setup 
   // const config = new DocumentBuilder()
-  //   .setTitle('Cats example')
+  //   .setTitle('mana Panchayat')
   //   .setDescription('The cats API description')
   //   .setVersion('1.0')
   //   .addTag('cats')

@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
 import { createCategoryDto } from "../../dto/createCategoryDto";
 import { CreateLabelDto } from "../../dto/createLabelDto";
 import { CategoryService } from "./category.service";
@@ -11,11 +12,13 @@ export class CategoryController {
     }
 
     @Get()
+    @UseGuards(AuthGuard('jwt'))
     getAllCategories(){
 
     }
 
     @Post()
+    @UseGuards(AuthGuard('jwt'))
     async createCategory(@Body() createCategoryDto: CreateLabelDto) {
         return await this.categoryservice.createCategory(createCategoryDto);
     }

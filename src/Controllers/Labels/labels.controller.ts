@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
 import { CreateLabelDto } from "../../dto/createLabelDto";
 import { LabelsService } from "./labels.service";
 
@@ -10,11 +11,13 @@ export class LabelsController {
     }
 
     @Get()
+    @UseGuards(AuthGuard('jwt'))
     async getAllLabels() {
         return await this.labelsService.getAllLabels();
     }
 
     @Post()
+    @UseGuards(AuthGuard('jwt'))
     async createLabel(@Body() createLableDto: CreateLabelDto) {
         return await this.labelsService.createLabel(createLableDto);
     }
