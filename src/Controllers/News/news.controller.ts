@@ -10,7 +10,6 @@ export class NewsController {
     constructor(private newsService: NewsService) {}
 
     @Get()
-    @UseGuards(AuthGuard('jwt'))
     async getAllNews() {
         return await this.newsService.getAllNews();
     }
@@ -31,7 +30,6 @@ export class NewsController {
     }
 
     @Get(":id")
-    @UseGuards(AuthGuard('jwt'))
     async getNewsbyId(@Param('id') id) {
         return await this.newsService.getNewsById(id);
     }

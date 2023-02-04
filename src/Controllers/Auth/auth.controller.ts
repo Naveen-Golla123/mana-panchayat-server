@@ -11,8 +11,8 @@ import { AuthGuard } from "@nestjs/passport";
 export class AuthController {
 
     constructor(private authService: AuthService,
-                private jwtService: JwtService,
-                @InjectRepository(Users) private usersRepository: Repository<Users>) {
+                // private jwtService: JwtService,
+                ) {
 
     }
 
@@ -22,3 +22,9 @@ export class AuthController {
         return await this.authService.login(authDto.username,authDto.password);
     }
 }
+
+
+// {
+//     "title": "",
+
+// }

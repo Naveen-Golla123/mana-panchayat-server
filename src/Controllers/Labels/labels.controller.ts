@@ -11,7 +11,6 @@ export class LabelsController {
     }
 
     @Get()
-    @UseGuards(AuthGuard('jwt'))
     async getAllLabels() {
         return await this.labelsService.getAllLabels();
     }

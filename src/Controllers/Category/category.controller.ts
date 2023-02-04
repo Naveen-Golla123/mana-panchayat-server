@@ -12,7 +12,6 @@ export class CategoryController {
     }
 
     @Get()
-    @UseGuards(AuthGuard('jwt'))
     getAllCategories(){
 
     }
