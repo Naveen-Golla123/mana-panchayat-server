@@ -21,7 +21,7 @@ export class NewsService {
     }
 
     async getNewsById(newsId) {
-        return await this.newsRepository.createQueryBuilder("news").where("news.id=:id",{id:newsId}).where("news.isDeleted=:isDeleted",{isDeleted:false}).leftJoin("news.author",'a').addSelect(["news.*","a.firstname","a.lastname"]).getOne();
+        return await this.newsRepository.createQueryBuilder("news").leftJoin("news.author",'a').where("news.isDeleted=:isDeleted",{isDeleted:false}).where("news.id=:id",{id:newsId}).addSelect(["news.*","a.firstname","a.lastname"]).getOne();
     }
 
     async getLatestNews(pageSize: number) {
