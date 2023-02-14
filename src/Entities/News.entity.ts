@@ -43,6 +43,12 @@ export class News {
 
     @Column()
     MetaDescription: string;
+
+    @Column({
+        nullable:false,
+        default: false
+    })
+    isDeleted: boolean
     
     // Relations
     @ManyToOne(()=> Category, category=> category.news)

@@ -17,11 +17,11 @@ export class NewsService {
     }
 
     async getAllNews() {
-        return await this.newsRepository.createQueryBuilder("news").where("isDeleted=:isDeleted",{isDeleted:false}).leftJoin("news.author","a").addSelect(["news.*","a.firstname","a.lastname"]).getMany();
+        return await this.newsRepository.createQueryBuilder("news").where("news.isDeleted=:isDeleted",{isDeleted:false}).leftJoin("news.author","a").addSelect(["news.*","a.firstname","a.lastname"]).getMany();
     }
 
     async getNewsById(newsId) {
-        return await this.newsRepository.createQueryBuilder("news").where("news.id=:id",{id:newsId}).leftJoin("news.author",'a').addSelect(["news.*","a.firstname","a.lastname"]).getOne();
+        return await this.newsRepository.createQueryBuilder("news").where("news.id=:id",{id:newsId}).where("news.isDeleted=:isDeleted",{isDeleted:false}).leftJoin("news.author",'a').addSelect(["news.*","a.firstname","a.lastname"]).getOne();
     }
 
     async getLatestNews(pageSize: number) {
