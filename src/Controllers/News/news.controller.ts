@@ -38,4 +38,9 @@ export class NewsController {
     async getLatestNews(@Param("pageSize") pageSize: number) {
         return await this.newsService.getLatestNews(pageSize);
     }
+
+    @Post("delete/:id")
+    async deleteNews(@Param('id') id:number) {
+        return await this.newsService.deleteNews(id);
+    }
 }

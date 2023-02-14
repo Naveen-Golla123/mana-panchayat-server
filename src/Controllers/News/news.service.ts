@@ -21,14 +21,13 @@ export class NewsService {
     }
 
     async getNewsById(newsId) {
-        return await this.newsRepository.findBy({ id: parseInt(newsId) });
+        return await this.newsRepository.createQueryBuilder("news").where("news.id=:id",{id:newsId}).leftJoin("news.author",'a').addSelect(["news.*","a.firstname","a.lastname"]).getOne();
     }
 
     async getLatestNews(pageSize: number) {
         var news = await this.newsRepository.createQueryBuilder("news").select().limit(pageSize).orderBy({ "news.createdOn": "DESC" }).getMany();
         return news;
     }
-
 
     async createNews(file: Express.Multer.File, createNewsDto: CreateNewsDto, userContext: any) {
         var news = new News();
@@ -48,7 +47,7 @@ export class NewsService {
         news.imgUrl = uploadedBlobUrl;
         news.labels = [];
         var author: Users = await this.userRepository.createQueryBuilder("users").select().where("users.id=:id",{id:userContext.userId}).getOne();
-        news.author = author
+        news.author = author;
         //save new entry to db
         return await this.newsRepository.save(news);
     }
@@ -71,4 +70,12 @@ export class NewsService {
         return news;
     }
 
+    async deleteNews(id:number) {
+        var news = await this.newsRepository.createQueryBuilder().update("news").set({
+            "isDeleted": true
+        }).where(
+            "news.id=:id", { id: id }
+        ).execute();
+        return news;
+    }
 }
