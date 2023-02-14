@@ -17,7 +17,7 @@ export class NewsService {
     }
 
     async getAllNews() {
-        return await this.newsRepository.createQueryBuilder("news").leftJoin("news.author","a").addSelect(["news.*","a.firstname","a.lastname"]).getMany();
+        return await this.newsRepository.createQueryBuilder("news").where("isDeleted=:isDeleted",{isDeleted:false}).leftJoin("news.author","a").addSelect(["news.*","a.firstname","a.lastname"]).getMany();
     }
 
     async getNewsById(newsId) {
