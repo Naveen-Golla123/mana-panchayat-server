@@ -1,6 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Category } from "./Category.entity";
 import { Labels } from "./Labels.entity";
+import { Users } from "./Users.entity";
 
 @Entity({name:"news"})
 
@@ -35,6 +36,10 @@ export class News {
         default: ""
     })
     location: string;
+
+    @ManyToOne(()=> Users, users=> users.newsCreated)
+    @JoinColumn()
+    author: Users;
 
     @Column()
     MetaDescription: string;

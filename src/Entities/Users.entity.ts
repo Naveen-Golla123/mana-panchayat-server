@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { UserType } from "./enums";
+import { News } from "./News.entity";
 
 @Entity()
 export class Users {
@@ -11,7 +12,6 @@ export class Users {
 
     @Column({nullable: false})
     lastname: string;
-
 
     @Column({nullable: false})
     username: string;
@@ -35,4 +35,7 @@ export class Users {
 
     @Column()
     password: string;
+
+    @OneToMany(()=>News,news=>news.author)
+    newsCreated: News[];
 }

@@ -5,9 +5,10 @@ import { Category } from "../../Entities/Category.entity";
 import { News } from "../../Entities/News.entity";
 import { NewsController } from "./news.controller";
 import { NewsService } from "./news.service";
+import { Users } from "src/Entities/Users.entity";
 
 @Module({
-    imports:[TypeOrmModule.forFeature([News, Category])],
+    imports:[TypeOrmModule.forFeature([News, Category,Users])],
     providers: [NewsService,FileUploader],
     controllers: [NewsController]
 })

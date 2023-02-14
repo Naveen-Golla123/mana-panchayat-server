@@ -10,6 +10,7 @@ import { Category } from './Entities/Category.entity';
 import { Labels } from './Entities/Labels.entity';
 import { News } from './Entities/News.entity';
 import { Users } from './Entities/Users.entity';
+import { SharedService } from './Shared/SharedService';
 
 @Module({
   imports: [

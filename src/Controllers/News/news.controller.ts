@@ -7,7 +7,7 @@ import { NewsService } from "./news.service";
 @Controller("News")
 export class NewsController {
 
-    constructor(private newsService: NewsService) {}
+    constructor(private newsService: NewsService) { }
 
     @Get()
     async getAllNews() {
@@ -17,20 +17,25 @@ export class NewsController {
     @Post()
     @UseGuards(AuthGuard('jwt'))
     @UseInterceptors(FileInterceptor('file'))
-    async createNews(@UploadedFile() file: Express.Multer.File,@Body() createNewsDto: CreateNewsDto) {
-        return await this.newsService.createNews(file,createNewsDto)
+    async createNews(@UploadedFile() file: Express.Multer.File, @Body() createNewsDto: CreateNewsDto, @Req() req: any) {
+        return await this.newsService.createNews(file, createNewsDto,req.user)
     }
 
     @Patch()
-    // @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @UseInterceptors(FileInterceptor('file'))
-    async updateNews(@UploadedFile() file: Express.Multer.File,@Body() createNewsDto: CreateNewsDto) {
+    async updateNews(@UploadedFile() file: Express.Multer.File, @Body() createNewsDto: CreateNewsDto) {
         console.log(createNewsDto)
-        return await this.newsService.updateNews(file,createNewsDto);
+        return await this.newsService.updateNews(file, createNewsDto);
     }
 
     @Get(":id")
     async getNewsbyId(@Param('id') id) {
         return await this.newsService.getNewsById(id);
+    }
+
+    @Get("/latest/:pageSize")
+    async getLatestNews(@Param("pageSize") pageSize: number) {
+        return await this.newsService.getLatestNews(pageSize);
     }
 }

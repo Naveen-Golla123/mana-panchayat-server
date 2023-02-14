@@ -5,31 +5,37 @@ import { Repository } from "typeorm";
 import { CreateNewsDto } from "../../dto/createNewsDto";
 import { Category } from "../../Entities/Category.entity";
 import { FileUploader } from "src/Shared/FileUploader";
+import { Users } from "src/Entities/Users.entity";
 @Injectable()
 export class NewsService {
 
     constructor(@InjectRepository(News) private newsRepository: Repository<News>,
         @InjectRepository(Category) private categoryRepository: Repository<Category>,
+        @InjectRepository(Users) private userRepository: Repository<Users>,
         private fileUploader: FileUploader) {
 
     }
 
     async getAllNews() {
-        return await this.newsRepository.find();
+        return await this.newsRepository.createQueryBuilder("news").leftJoin("news.author","a").addSelect(["news.*","a.firstname","a.lastname"]).getMany();
     }
 
     async getNewsById(newsId) {
         return await this.newsRepository.findBy({ id: parseInt(newsId) });
     }
 
+    async getLatestNews(pageSize: number) {
+        var news = await this.newsRepository.createQueryBuilder("news").select().limit(pageSize).orderBy({ "news.createdOn": "DESC" }).getMany();
+        return news;
+    }
 
-    async createNews(file: Express.Multer.File, createNewsDto: CreateNewsDto) {
+
+    async createNews(file: Express.Multer.File, createNewsDto: CreateNewsDto, userContext: any) {
         var news = new News();
         console.log(file);
         console.log(createNewsDto);
         //upload the file and get the url for the same.
         var uploadedBlobUrl = await this.fileUploader.uploadFile(file);
-
         // fetching category data.
         var category = await this.categoryRepository.createQueryBuilder("category")
             .select()
@@ -41,7 +47,8 @@ export class NewsService {
         news.location = createNewsDto.location;
         news.imgUrl = uploadedBlobUrl;
         news.labels = [];
-
+        var author: Users = await this.userRepository.createQueryBuilder("users").select().where("users.id=:id",{id:userContext.userId}).getOne();
+        news.author = author
         //save new entry to db
         return await this.newsRepository.save(news);
     }
