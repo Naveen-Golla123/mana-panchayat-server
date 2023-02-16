@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Param, Patch, Post, Query, Req, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
+import { Body, Controller, Get, Param, Patch, Post, Query, Req, Res, UploadedFile, UseGuards, UseInterceptors } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { Response } from "express";
 import { CreateNewsDto } from "../../dto/createNewsDto";
 import { NewsService } from "./news.service";
 
@@ -30,8 +31,10 @@ export class NewsController {
     }
 
     @Get(":id")
-    async getNewsbyId(@Param('id') id) {
-        return await this.newsService.getNewsById(id);
+    async getNewsbyId(@Param('id') id, @Res() res: Response) {
+        var result = await this.newsService.getNewsById(id)
+        console.log(result)
+        return res.render('viewnews',result);
     }
 
     @Get("/latest/:pageSize")
