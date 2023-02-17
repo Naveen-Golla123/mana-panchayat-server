@@ -4,9 +4,13 @@ import { join } from 'path';
 import * as hbs from 'hbs';
 // import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestFastifyApplication>(AppModule);
   // app.use(cors());
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -14,10 +18,24 @@ async function bootstrap() {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Accept');
     next();
   });
+  // var exphbs = require('express-handlebars');
+  // app.useStaticAssets(join(__dirname, '..', 'Public'));
+  // app.engine('.hbs', exphbs({ extname: '.hbs' }));
+  // app.set('view engine', '.hbs');
+  console.log(__dirname)
+  console.log(typeof(join(__dirname, '..', 'public')))
+  // app.useStaticAssets({
+  //   root: join(__dirname, '..', 'public'),
+  //   prefix: '/public/',
+  // });
 
-  app.useStaticAssets(join(__dirname, '..', 'Public'));
-  app.setBaseViewsDir(join(__dirname, '..', 'Views'));
-  app.setViewEngine('hbs');
+  console.log("hello")
+  app.setViewEngine({
+    engine: {
+      handlebars: require('handlebars'),
+    },
+    templates: join(__dirname, '..', 'Views'),
+  });
 
   app.enableCors({
     allowedHeaders: "*",
