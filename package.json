@@ -20,6 +20,10 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@fastify/static": "6.4.0",
+    "handlebars": "4.7.7",
+    "@fastify/view": "7.0.0",
+    "rimraf": "3.0.2",
     "@azure/storage-blob": "^12.12.0",
     "@nestjs/cli": "9.2.0",
     "@nestjs/common": "^9.0.0",
