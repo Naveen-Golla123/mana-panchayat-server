@@ -8,6 +8,7 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+import { ExpressHandlebars } from 'express-handlebars';
 
 async function bootstrap() {
 
@@ -26,8 +27,6 @@ async function bootstrap() {
     templates: join(__dirname, '..', 'views'),
   });
 
-
-
   // const app = await NestFactory.create<NestExpressApplication>(AppModule);
   // // app.use(cors());
   // app.use((req, res, next) => {
@@ -38,8 +37,13 @@ async function bootstrap() {
   // });
 
   // app.useStaticAssets(join(__dirname, '..', 'public'));
-  // app.setBaseViewsDir(join(__dirname, '..', 'views'));
-  // app.setViewEngine('ejs');
+  // //app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  // // app.set('v')
+  // const handlebars = require('express-handlebars');
+  // app.set('view engine', 'handlebars');
+  // app.engine('handlebars', new ExpressHandlebars({
+  //   layoutsDir: __dirname + '/views',
+  // }));
 
   // var exphbs = require('express-handlebars');
   // app.useStaticAssets(join(__dirname, '..', 'Public'));

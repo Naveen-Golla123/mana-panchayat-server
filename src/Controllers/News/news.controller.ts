@@ -31,8 +31,9 @@ export class NewsController {
     }
 
     @Get(":id")
-    //@Render("viewnews.hbs")
+    @Render("viewnews.hbs")
     async getNewsbyId(@Param('id') id) {
+        console.log("here")
         return await this.newsService.getNewsById(id)
         // console.log(result)
         //return result;

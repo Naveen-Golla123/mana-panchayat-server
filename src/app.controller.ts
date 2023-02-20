@@ -7,7 +7,6 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  @Render("viewnews.hbs")
   getHello(): any {
     return {message:"Hello"}
     //return this.appService.getHello();
