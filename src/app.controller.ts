@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Render } from '@nestjs/common';
 import { AppService } from './app.service';
 import { UserDto } from './dto/userDto';
 
@@ -7,8 +7,10 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Render("viewnews")
+  getHello(): any {
+    return {message:"Hello"}
+    //return this.appService.getHello();
   }
 
   @Post("register")

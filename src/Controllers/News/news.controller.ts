@@ -31,11 +31,11 @@ export class NewsController {
     }
 
     @Get(":id")
-    @Render("viewnews.hbs")
-    async getNewsbyId(@Param('id') id, @Res() res: Response) {
-        var result = await this.newsService.getNewsById(id)
-        console.log(result)
-        return result;
+    //@Render("viewnews.hbs")
+    async getNewsbyId(@Param('id') id) {
+        return await this.newsService.getNewsById(id)
+        // console.log(result)
+        //return result;
     }
 
     @Get("/latest/:pageSize")

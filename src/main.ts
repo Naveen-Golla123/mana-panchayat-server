@@ -10,7 +10,7 @@ import {
 } from '@nestjs/platform-fastify';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
   // app.use(cors());
   app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -18,29 +18,32 @@ async function bootstrap() {
     res.header('Access-Control-Allow-Headers', 'Content-Type, Accept');
     next();
   });
+
+  app.useStaticAssets(join(__dirname, '..', 'public'));
+  app.setBaseViewsDir(join(__dirname, '..', 'views'));
+  app.setViewEngine('ejs');
+
   // var exphbs = require('express-handlebars');
   // app.useStaticAssets(join(__dirname, '..', 'Public'));
   // app.engine('.hbs', exphbs({ extname: '.hbs' }));
   // app.set('view engine', '.hbs');
-  console.log(__dirname)
-  console.log(typeof(join(__dirname, '..', 'public')))
   // app.useStaticAssets({
   //   root: join(__dirname, '..', 'public'),
   //   prefix: '/public/',
   // });
 
-  console.log("hello")
-  app.setViewEngine({
-    engine: {
-      handlebars: require('handlebars'),
-    },
-    templates: join(__dirname, '..', 'Views'),
-  });
+  // console.log("hello")
+  // app.setViewEngine({
+  //   engine: {
+  //     handlebars: require('handlebars'),
+  //   },
+  //   templates: join(__dirname, '..', 'Views'),
+  // });
 
-  app.enableCors({
-    allowedHeaders: "*",
-    //origin: ["https://naveen-golla123.github.io/"]
-  });
+  // app.enableCors({
+  //   allowedHeaders: "*",
+  //   //origin: ["https://naveen-golla123.github.io/"]
+  // });
 
   // Swagger setup 
   // const config = new DocumentBuilder()
@@ -51,6 +54,6 @@ async function bootstrap() {
   // //   .build();
   // const document = SwaggerModule.createDocument(app, config);
   // SwaggerModule.setup('api', app, document);
-  await app.listen(parseInt(process.env.PORT) || 3000);
+  await app.listen(3000);
 }
 bootstrap();
