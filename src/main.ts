@@ -12,11 +12,27 @@ import {
 
 async function bootstrap() {
 
+  const CORS_OPTIONS = {
+    origin: ['*'], // or '*' or whatever is required
+    allowedHeaders: [
+      'Access-Control-Allow-Origin',
+      'Origin',
+      'X-Requested-With',
+      'Accept',
+      'Content-Type',
+      'Authorization',
+    ],
+    exposedHeaders: 'Authorization',
+    credentials: true,
+    methods: ['GET', 'PUT', 'OPTIONS', 'POST', 'DELETE'],
+  };
+
+  const adapter = new FastifyAdapter();
+  adapter.enableCors(CORS_OPTIONS)
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
-    new FastifyAdapter(),
+    adapter,
   );
-  app.enableCors();
   app.use(cookieParser());
   app.useStaticAssets({
     root: join(__dirname, '..', 'public'),
