@@ -11,6 +11,7 @@ import {
     FilesFastifyInterceptor,
     diskStorage
   } from "fastify-file-interceptor";
+import { FastifyRequest } from "fastify";
 
 @Controller("News")
 export class NewsController {
@@ -25,7 +26,7 @@ export class NewsController {
     @Get('/createNews')
     @UseGuards(AuthGuard('jwt'))
     @Render('createNewsPost.hbs')
-    createNewsPage(@Req() req: Request) {
+    createNewsPage(@Req() req: FastifyRequest) {
         console.log(req)
         return 1
     }

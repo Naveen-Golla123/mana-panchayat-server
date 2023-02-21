@@ -21,6 +21,21 @@
     <!-- Fontawesome Link -->
     <script src="https://kit.fontawesome.com/1a2b0738bb.js" crossorigin="anonymous"></script>
 
+
+    <!-- Include Handlebars from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script>
+    // compile the template
+    var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+    // execute the compiled template and print the output to the console
+    console.log(template({ doesWhat: "rocks!" }));
+    </script>
+
+
+
+
+
+
 </head>
 
 <body>
@@ -126,7 +141,38 @@
         <h4 class="font-weight-bold">Recent Posts</h4>
 
         <div id="allPosts">
-            <div id="holder"></div>
+            <div id="holder">
+                {{#each data}}
+
+
+                    <div class="row boder mt-3 py-3" id="news_${result[each].id}">
+                        <div class="col-3">
+                            <img class="w-100 h-auto" src={{this.imgUrl}} alt="" srcset="">
+                        </div>
+                        <div class="col-9">
+                            <h5 class="font-weight-bold">{{this.title}}</h5>
+                            <div class="mt-3" style="max-height:50px; overflow:hidden;">
+                            <p class="" >{{{this.newsDescription}}}</p>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between mt-3">
+                            <a href={{newsUrl}} target="_blank" class="text-primary p-0">Read More 
+                                <i class="fa-solid fa-angles-right ml-1"></i>
+                            </a>
+
+                            <div class="d-flex justify-content-between">
+                                <small class="text-secondary mr-3"><i class="fa-solid fa-location-dot mr-2"></i>{{this.location}}</small>
+                                <small class="text-secondary"><i class="fa-regular fa-clock mr-2"></i>{{this.createdOn}}</small>                    
+                            </div>
+
+                            </div>
+                        </div>
+                    </div> 
+
+
+                {{/each}}
+
+            </div>
         </div>
 
     </div>
@@ -134,7 +180,18 @@
 
 
     <!-- Local Js Link -->
-    <script></script>
+    <script>
+
+        Handlebars.registerHelper("newsUrl", function() {
+            console.log("http://localhost:3000/News/" + this.id);
+            return "http://localhost:3000/News/" + this.id;
+        });
+
+        
+
+
+
+    </script>
 
 
 </body>

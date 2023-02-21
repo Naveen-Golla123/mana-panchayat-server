@@ -40,7 +40,7 @@ fetch("https://mana-panchayat-server.vercel.app/news/", requestOptions)
             <div class="col-9">
                 <h5 class="font-weight-bold">${result[each].title}</h5>
                 <div class="mt-3" style="max-height:50px; overflow:hidden;">
-                  <p class="" >${result[each].newsDescription}</p>
+                  <p class="" >${result[each].newsDescription}</p> 
                 </div>
                 
                 <div class="d-flex justify-content-between mt-3">

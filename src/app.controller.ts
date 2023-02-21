@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, Render } from '@nestjs/common';
+import { json } from 'stream/consumers';
 import { AppService } from './app.service';
 import { NewsService } from './Controllers/News/news.service';
 import { UserDto } from './dto/userDto';
@@ -12,7 +13,9 @@ export class AppController {
   async getHello(): Promise<any> {
     var result = await this.newsService.getLatestNews(10);
     console.log(result)
-    return result;
+    return {
+      data:result
+    };
   }
 
   @Post("register")
