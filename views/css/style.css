@@ -1,18 +1,25 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Akshar:wght@500&display=swap');
 
-
-
-
-
 :root{
-    --theme-primary:#82B9E6;
-    --theme-secondary:#E1EDF7;
-    --theme-dark:#1C2B33;
+    --theme-primary:#FF5C35;
+    --theme-secondary:#FEF4EA;
+    --theme-dark:#213343;
+    --theme-light: #F6F9FC;
+    --theme-white: #FFFFFF;
 
-    --text-primary:#002D56;
-    --text-secondary:#002D56;
-    --text-dark:#002D56;
+    --theme-font-color: #2E475D;
+    --theme-font-family: Lexend Deca,sans-serif;
+
+    --theme-card-shadow: 0 0 11px #eaf0f6;
+
+}
+
+
+/* Nav Bar */
+
+.bg-theme-primary{
+    background-color: #FF5C35 !important;
 }
 
 
@@ -28,20 +35,6 @@ body p{
     font-family: 'Akshar', sans-serif;
 
 }
-
-
-
-
-#holder{
-    background-color: var(--theme-secondary);
-    border-radius: .3rem;
-    color: var(--theme-dark);
-    border: 5px solid var(--theme-dark);
-
-}
-
-
-
 
 
 /* Login Page  */
@@ -186,8 +179,5 @@ body p{
 @media only screen and (max-width: 600px) {
     .grid-box{
        grid-template-columns: 1fr;
-    }
-
-    
-    
+    }  
 }
