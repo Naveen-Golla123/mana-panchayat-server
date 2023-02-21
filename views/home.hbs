@@ -32,19 +32,13 @@
 
 
     <!-- Include Handlebars from a CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    {{!-- <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
     <script>
         // compile the template
-        var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
+        //var template = Handlebars.compile("Handlebars <b>{{doesWhat}}</b>");
         // execute the compiled template and print the output to the console
-        console.log(template({ doesWhat: "rocks!" }));
-    </script>
-
-
-
-
-
-
+        //console.log(template({ doesWhat: "rocks!" }));
+    </script> --}}
 </head>
 
 <body>
@@ -155,7 +149,6 @@
             <div id="holder">
                 {{#each data}}
 
-
                 <div class="row boder mt-3 py-3" id="news_${result[each].id}">
                     <div class="col-3">
                         <img class="w-100 h-auto" src={{this.imgUrl}} alt="" srcset="">
@@ -167,7 +160,6 @@
                         </div>
 
                         <div class="d-flex justify-content-between mt-3">
-
 
                             <a href={{readMeBlock this.id}} target="_blank" class="text-primary p-0">Read
                                 More
@@ -189,9 +181,6 @@
 
     </div>
     <!-- Local Js Link -->
-
-
-
 </body>
 
 </html>

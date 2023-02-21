@@ -29,6 +29,12 @@ async function bootstrap() {
     var res = `http://localhost:3000/News/${id}`
     return res;
   });
+
+  hbs.registerHelper("baseUrl", function (id) {
+    var res = process.env.BASE_URL;
+    return res;
+  });
+
   app.setViewEngine({
     engine: {
       handlebars: hbs,
@@ -43,4 +49,5 @@ async function bootstrap() {
 
   await app.listen(3000);
 }
+
 bootstrap();
