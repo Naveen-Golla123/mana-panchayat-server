@@ -1,16 +1,18 @@
 import { Body, Controller, Get, Post, Render } from '@nestjs/common';
 import { AppService } from './app.service';
+import { NewsService } from './Controllers/News/news.service';
 import { UserDto } from './dto/userDto';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly appService: AppService, private newsService: NewsService) {}
 
   @Get()
   @Render("home.hbs")
-  getHello(): any {
-    return {message:"Hello"}
-    //return this.appService.getHello();
+  async getHello(): Promise<any> {
+    var result = await this.newsService.getLatestNews(10);
+    console.log(result)
+    return result;
   }
 
   @Post("register")
