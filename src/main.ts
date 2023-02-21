@@ -33,7 +33,7 @@ async function bootstrap() {
     AppModule,
     adapter,
   );
-  app.use(cookieParser());
+  app.use(require('cookie-parser'));
   app.useStaticAssets({
     root: join(__dirname, '..', 'public'),
     prefix: '/public/',
