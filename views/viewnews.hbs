@@ -30,22 +30,22 @@
 
     <body>
 
-        <div class="container mt-5">
+        <div class="container mt-5" style="max-width:50rem">
 
             <!-- Both Side by Side Boxes -->
             <div class="grid-box">
 
                 <!-- Left Side Box -->
-                <div class="">
+                <div class="" >
 
                     <!-- Blog Post Section (Title, Author & Time, News Content) -->
-                    <div id="blogPostArea">
+                    <div id="blogPostArea" >
                         <h1 id="newsTitle" class="my-3"></h1>
                         <hr>
                         <div class="mb-3 text-secondary d-flex justify-content-between">
                             <div class="p-1">
                                 <i class="fa-solid fa-user mr-2"></i>By <span id="authorName">{{firstname}} {{lastname}}</span>  
-                                <i class="fa-solid fa-calendar-days mx-2"></i> <span id="publishedDate"></span>                                 
+                                <i class="fa-solid fa-calendar-days mx-2"></i> <span id="publishedDate">{{createOnDate}} </span>                                 
                             </div>
                             <div class="border p-1 px-3 cursor-point" data-toggle="modal" data-target="#sharePopUpModal">
                                 <i class="fa-solid fa-share-nodes mr-2"></i>Share    
@@ -55,7 +55,7 @@
 
                         <img class="w-100 mb-4" id="imgContainer" src={{imgUrl}}></img>
 
-                        <div id="newsContent">{{newsDescription}}</div>
+                        <div id="newsContent">{{{newsDescription}}}</div>
 
                         <div class="my-5"><hr></div>
 

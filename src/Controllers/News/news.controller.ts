@@ -27,7 +27,7 @@ export class NewsController {
     @UseGuards(AuthGuard('jwt'))
     @Render('createNewsPost.hbs')
     createNewsPage(@Req() req: FastifyRequest) {
-        console.log(req)
+        // console.log(req)
         return 1
     }
 

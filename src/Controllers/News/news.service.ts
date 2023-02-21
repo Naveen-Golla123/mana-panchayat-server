@@ -42,7 +42,7 @@ export class NewsService {
 
     async createNews(file: Express.Multer.File, createNewsDto: CreateNewsDto, userContext: any) {
         var news = new News();
-        console.log(file);
+        // console.log(file);
         console.log(createNewsDto);
         //upload the file and get the url for the same.
         var uploadedBlobUrl = await this.fileUploader.uploadFile(file);
@@ -51,7 +51,7 @@ export class NewsService {
             .select()
             .where("category.id=:categoryId", { categoryId: createNewsDto.categoryId }).getOne();
         news.title = createNewsDto.title;
-        news.MetaDescription = "";
+        news.MetaDescription = createNewsDto.metaDescription;
         news.newsDescription = createNewsDto.news;
         news.category = category;
         news.location = createNewsDto.location;
@@ -74,7 +74,7 @@ export class NewsService {
             "newsDescription": createNewsDto.news,
             "imgUrl": uploadedBlobUrl,
             "location": createNewsDto.location,
-            "MetaDescription": createNewsDto.Metaded,
+            "MetaDescription": createNewsDto.metaDescription,
         }).where(
             "news.id=:id", { id: createNewsDto.id }
         ).execute();
