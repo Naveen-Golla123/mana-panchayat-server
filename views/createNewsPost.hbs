@@ -50,6 +50,7 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
+        {{!-- Title Input --}}
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <button class="btn btn-outline-dark px-4 font-weight-bold" type="button" disabled>Title</button>
@@ -61,6 +62,24 @@
                         class="fa-regular fa-floppy-disk mr-2"></i>Save</button>
             </div>
         </div>
+        {{!-- Meta Description --}}
+        <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <button class="btn btn-outline-dark px-4 font-weight-bold" disabled>Meta Description</button>
+        </div>
+        <textarea id="metaDescription" class="form-control" aria-label="With textarea"></textarea>
+        </div>
+
+        {{!-- Location Input --}}
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-dark px-4 font-weight-bold" type="button" disabled>Location</button>
+            </div>
+            <input id="locationInput" type="text" class="form-control" placeholder="Enter your City/Village Name here" aria-label=""
+                aria-describedby="basic-addon1">
+        </div>
+
+
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -82,6 +101,11 @@
         let postSaveButtonEl = document.getElementById("postSaveButton"); //Save Button
         let imageInputEl = document.getElementById("imageInput"); //Image Input Feild
         let titleInputEl = document.getElementById("titleInput"); //Title Input Feild
+        let metaDescriptionEl = document.getElementById("metaDescription"); //MetaDescription Input Feild
+        let locationInputEl = document.getElementById("locationInput"); //Location Input Feild
+
+
+
         let editor1El = document.getElementById("editor1"); //Editor Display Container
         let validationAlertEl = document.getElementById("validationAlert"); //Validation Error Pop
         let alertMessageEl = document.getElementById("alertMessage"); //Error Message Text
@@ -130,6 +154,8 @@
                 formdata.append("file", uploadedFile, uploadedFile.name);
                 formdata.append("title", titleInputEl.value);
                 formdata.append("news", em_string);
+                formdata.append("metaDescription", metaDescriptionEl.value);
+                formdata.append("location", locationInputEl.value);
 
                 token = localStorage.getItem('jwtToken');
                 //Request options
