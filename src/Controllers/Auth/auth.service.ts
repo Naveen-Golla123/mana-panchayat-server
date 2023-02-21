@@ -19,13 +19,16 @@ export class AuthService {
     }
 
     async login(user:any) {
+        //console.log("here")
+        var result = await this.jwtService.sign({
+            userId: user.id,
+            username: user.username,
+            firstname: user.firstname,
+            lastname: user.lastname
+        })
+        console.log(result)
         return {
-            access_token: this.jwtService.sign({
-                userId: user.id,
-                username: user.username,
-                firstname: user.firstname,
-                lastname: user.lastname
-            })
+            access_token: result
         };
     }
 }

@@ -1,14 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { join } from 'path';
-import * as hbs from 'hbs';
-// import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { NestExpressApplication } from '@nestjs/platform-express';
+import * as cookieParser from 'cookie-parser';
+import fastifyCookie from '@fastify/cookie';
+import { contentParser } from 'fastify-file-interceptor';
+
 import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
-import { ExpressHandlebars } from 'express-handlebars';
 
 async function bootstrap() {
 
@@ -16,6 +16,8 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
+  app.enableCors();
+  app.use(cookieParser());
   app.useStaticAssets({
     root: join(__dirname, '..', 'public'),
     prefix: '/public/',
@@ -26,56 +28,12 @@ async function bootstrap() {
     },
     templates: join(__dirname, '..', 'views'),
   });
+  app.register(contentParser);
 
-  // const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  // // app.use(cors());
-  // app.use((req, res, next) => {
-  //   res.header('Access-Control-Allow-Origin', '*');
-  //   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  //   res.header('Access-Control-Allow-Headers', 'Content-Type, Accept');
-  //   next();
-  // });
+  await app.register(fastifyCookie, {
+    secret: 'my-secret', // for cookies signature
+  });
 
-  // app.useStaticAssets(join(__dirname, '..', 'public'));
-  // //app.setBaseViewsDir(join(__dirname, '..', 'views'));
-  // // app.set('v')
-  // const handlebars = require('express-handlebars');
-  // app.set('view engine', 'handlebars');
-  // app.engine('handlebars', new ExpressHandlebars({
-  //   layoutsDir: __dirname + '/views',
-  // }));
-
-  // var exphbs = require('express-handlebars');
-  // app.useStaticAssets(join(__dirname, '..', 'Public'));
-  // app.engine('.hbs', exphbs({ extname: '.hbs' }));
-  // app.set('view engine', '.hbs');
-  // app.useStaticAssets({
-  //   root: join(__dirname, '..', 'public'),
-  //   prefix: '/public/',
-  // });
-
-  // console.log("hello")
-  // app.setViewEngine({
-  //   engine: {
-  //     handlebars: require('handlebars'),
-  //   },
-  //   templates: join(__dirname, '..', 'Views'),
-  // });
-
-  // app.enableCors({
-  //   allowedHeaders: "*",
-  //   //origin: ["https://naveen-golla123.github.io/"]
-  // });
-
-  // Swagger setup 
-  // const config = new DocumentBuilder()
-  //   .setTitle('mana Panchayat')
-  //   .setDescription('The cats API description')
-  //   .setVersion('1.0')
-  //   .addTag('Mana-panchayat')
-  // //   .build();
-  // const document = SwaggerModule.createDocument(app, config);
-  // SwaggerModule.setup('api', app, document);
-  await app.listen(3000);
+   await app.listen(3000);
 }
 bootstrap();

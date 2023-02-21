@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -10,9 +10,6 @@ import { Category } from './Entities/Category.entity';
 import { Labels } from './Entities/Labels.entity';
 import { News } from './Entities/News.entity';
 import { Users } from './Entities/Users.entity';
-import * as path from 'path';
-import { SharedService } from './Shared/SharedService';
-import { AcceptLanguageResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
 
 @Module({
   imports: [
@@ -25,17 +22,6 @@ import { AcceptLanguageResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
       entities : [News,Category,Labels,Users],
       synchronize: true
     }),
-    // I18nModule.forRoot({
-    //   fallbackLanguage: 'en',
-    //   loaderOptions: {
-    //     path: path.join(__dirname, '/i18n/'),
-    //     watch: true,
-    //   },
-    //   resolvers: [
-    //     { use: QueryResolver, options: ['lang'] },
-    //     AcceptLanguageResolver,
-    //   ]
-    // }),
     TypeOrmModule.forFeature([Users]),
     CategoryModule,
     LabelsModule,
@@ -45,4 +31,5 @@ import { AcceptLanguageResolver, I18nModule, QueryResolver } from 'nestjs-i18n';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+}

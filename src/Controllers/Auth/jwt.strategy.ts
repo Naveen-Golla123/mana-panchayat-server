@@ -1,18 +1,32 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
-import { Injectable } from '@nestjs/common';
+import { ExecutionContext, Inject, Injectable, Scope } from '@nestjs/common';
 import { SharedService } from 'src/Shared/SharedService';
+import { FastifyReply, FastifyRequest } from 'fastify';
+import { hostname } from 'os';
+import { REQUEST } from '@nestjs/core';
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, "jwt") {
+
   constructor() {
+    
+    const cookieExtractor = (req) => {
+      var token = null;
+      token = req.cookies["panchayatToken"]
+      console.log(token)
+      return token;
+    };
+
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor,ExtractJwt.fromAuthHeaderAsBearerToken()]),
       ignoreExpiration: false,
-      secretOrKey: "this is mana-panchayat-web-server",
+      secretOrKey: "this is mana-panchayat-web-server"
     });
   }
 
-  async validate(payload: any) {
+  async validate(req: FastifyRequest, payload: any) {
+
     var userContext = { userId: payload.userId, username: payload.username, firstname: payload.firstname, lastname: payload.lastname }
     //this.sharedService.setUserContext(userContext)
     return userContext;
