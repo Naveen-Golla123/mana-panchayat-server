@@ -58,4 +58,6 @@ export class News {
     @ManyToMany(()=> Labels)
     @JoinTable()
     labels: Labels[];
+
+    createOnDate: string;
 }

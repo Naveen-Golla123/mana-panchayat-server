@@ -22,9 +22,16 @@ async function bootstrap() {
     root: join(__dirname, '..', 'public'),
     prefix: '/public/',
   });
+  var hbs = require('handlebars');
+
+  hbs.registerHelper("readMeBlock", function (id) {
+    console.log(id)
+    var res = `http://localhost:3000/News/${id}`
+    return res;
+  });
   app.setViewEngine({
     engine: {
-      handlebars: require('handlebars'),
+      handlebars: hbs,
     },
     templates: join(__dirname, '..', 'views'),
   });
@@ -34,6 +41,6 @@ async function bootstrap() {
     secret: 'my-secret', // for cookies signature
   });
 
-   await app.listen(3000);
+  await app.listen(3000);
 }
 bootstrap();

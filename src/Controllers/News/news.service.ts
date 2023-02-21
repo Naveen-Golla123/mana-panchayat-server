@@ -6,27 +6,38 @@ import { CreateNewsDto } from "../../dto/createNewsDto";
 import { Category } from "../../Entities/Category.entity";
 import { FileUploader } from "src/Shared/FileUploader";
 import { Users } from "src/Entities/Users.entity";
+import { Utilies } from "src/Shared/Utlities";
 @Injectable()
 export class NewsService {
 
     constructor(@InjectRepository(News) private newsRepository: Repository<News>,
         @InjectRepository(Category) private categoryRepository: Repository<Category>,
         @InjectRepository(Users) private userRepository: Repository<Users>,
+        private utilies: Utilies,
         private fileUploader: FileUploader) {
 
     }
 
     async getAllNews() {
-        return await this.newsRepository.createQueryBuilder("news").where("news.isDeleted=:isDeleted",{isDeleted:false}).leftJoin("news.author","a").addSelect(["news.*","a.firstname","a.lastname"]).getMany();
+        let newsresult = await this.newsRepository.createQueryBuilder("news").where("news.isDeleted=:isDeleted",{isDeleted:false}).leftJoin("news.author","a").addSelect(["news.*","a.firstname","a.lastname"]).getMany();
+        newsresult.forEach(news=>{
+            this.processNews(news)
+        });
+        return newsresult;
     }
 
     async getNewsById(newsId) {
-        return await this.newsRepository.createQueryBuilder("news").leftJoin("news.author",'a').where("news.isDeleted=:isDeleted",{isDeleted:false}).where("news.id=:id",{id:newsId}).addSelect(["news.*","a.firstname","a.lastname"]).getOne();
+        let newsResult = await this.newsRepository.createQueryBuilder("news").leftJoin("news.author",'a').where("news.isDeleted=:isDeleted",{isDeleted:false}).where("news.id=:id",{id:newsId}).addSelect(["news.*","a.firstname","a.lastname"]).getOne();
+        this.processNews(newsResult);
+        return newsResult;
     }
 
     async getLatestNews(pageSize: number) {
-        var news = await this.newsRepository.createQueryBuilder("news").select().limit(pageSize).orderBy({ "news.createdOn": "DESC" }).getMany();
-        return news;
+        var newsresults = await this.newsRepository.createQueryBuilder("news").select().limit(pageSize).orderBy({ "news.createdOn": "DESC" }).getMany();
+        newsresults.forEach(news=>{
+            this.processNews(news)
+        });
+        return newsresults;
     }
 
     async createNews(file: Express.Multer.File, createNewsDto: CreateNewsDto, userContext: any) {
@@ -77,5 +88,9 @@ export class NewsService {
             "news.id=:id", { id: id }
         ).execute();
         return news;
+    }
+
+    processNews(news: News){
+        news.createOnDate = this.utilies.convertDate(news.createdOn);
     }
 }

@@ -12,6 +12,7 @@ import { Labels } from './Entities/Labels.entity';
 import { News } from './Entities/News.entity';
 import { Users } from './Entities/Users.entity';
 import { FileUploader } from './Shared/FileUploader';
+import { Utilies } from './Shared/Utlities';
 
 @Module({
   imports: [
@@ -31,7 +32,7 @@ import { FileUploader } from './Shared/FileUploader';
     AuthModule
   ],
   controllers: [AppController],
-  providers: [AppService,NewsService,FileUploader]
+  providers: [AppService,NewsService,FileUploader,Utilies]
 })
 export class AppModule {
 }
