@@ -28,7 +28,7 @@ async function bootstrap() {
   };
 
   const adapter = new FastifyAdapter();
-  adapter.enableCors(CORS_OPTIONS)
+  //adapter.enableCors(CORS_OPTIONS)
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     adapter,
