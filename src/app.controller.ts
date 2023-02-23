@@ -11,6 +11,7 @@ export class AppController {
   @Get()
   @Render("home.hbs")
   async getHello(): Promise<any> {
+    console.log("hello")
     var result = await this.newsService.getLatestNews(10);
     console.log(result)
     return {

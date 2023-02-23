@@ -9,23 +9,24 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
 
-  const CORS_OPTIONS = {
-    origin: ['*'], // or '*' or whatever is required
-    allowedHeaders: [
-      'Access-Control-Allow-Origin',
-      'Origin',
-      'X-Requested-With',
-      'Accept',
-      'Content-Type',
-      'Authorization',
-    ],
-    exposedHeaders: 'Authorization',
-    credentials: true,
-    methods: ['GET', 'PUT', 'OPTIONS', 'POST', 'DELETE'],
-  };
+  // const CORS_OPTIONS = {
+  //   origin: ['*'], // or '*' or whatever is required
+  //   allowedHeaders: [
+  //     'Access-Control-Allow-Origin',
+  //     'Origin',
+  //     'X-Requested-With',
+  //     'Accept',
+  //     'Content-Type',
+  //     'Authorization',
+  //   ],
+  //   exposedHeaders: 'Authorization',
+  //   credentials: true,
+  //   methods: ['GET', 'PUT', 'OPTIONS', 'POST', 'DELETE'],
+  // };
 
   const adapter = new FastifyAdapter();
   //adapter.enableCors(CORS_OPTIONS)
@@ -33,7 +34,7 @@ async function bootstrap() {
     AppModule,
     adapter,
   );
-  app.use(require('cookie-parser'));
+  //app.use(require('cookie-parser'));
   app.useStaticAssets({
     root: join(__dirname, '..', 'public'),
     prefix: '/public/',
@@ -63,7 +64,7 @@ async function bootstrap() {
     secret: 'my-secret', // for cookies signature
   });
 
-  await app.listen(3000);
+  await app.listen(3010);
 }
 
 bootstrap();
