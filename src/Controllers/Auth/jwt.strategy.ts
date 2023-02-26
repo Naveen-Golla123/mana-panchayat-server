@@ -2,9 +2,10 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExecutionContext, Inject, Injectable, Scope } from '@nestjs/common';
 import { SharedService } from 'src/Shared/SharedService';
-import { FastifyReply, FastifyRequest } from 'fastify';
+// import { FastifyReply, FastifyRequest } from 'fastify';
 import { hostname } from 'os';
 import { REQUEST } from '@nestjs/core';
+import { Request } from 'express';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, "jwt") {
@@ -25,7 +26,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, "jwt") {
     });
   }
 
-  async validate(req: FastifyRequest, payload: any) {
+  async validate(req: Request, payload: any) {
 
     var userContext = { userId: payload.userId, username: payload.username, firstname: payload.firstname, lastname: payload.lastname }
     //this.sharedService.setUserContext(userContext)
