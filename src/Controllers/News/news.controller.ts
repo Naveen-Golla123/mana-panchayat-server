@@ -49,9 +49,9 @@ export class NewsController {
     @Render("viewnews.hbs")
     async getNewsbyId(@Param('id') id) {
         console.log("here")
-        return await this.newsService.getNewsById(id)
-        // console.log(result)
-        //return result;
+        var result = await this.newsService.getNewsById(id)
+        console.log(result)
+        return result;
     }
 
     @Get("/latest/:pageSize")
