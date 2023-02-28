@@ -13,7 +13,7 @@ export class AppController {
   async getHello(): Promise<any> {
     console.log("hello")
     var result = await this.newsService.getLatestNews(10);
-    console.log(result)
+    result = this.newsService.removeHtmlTagesforNewDesc(result);
     return {
       data:result
     };
