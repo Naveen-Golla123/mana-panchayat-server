@@ -6,16 +6,15 @@ import { UserDto } from './dto/userDto';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService, private newsService: NewsService) {}
+  constructor(private readonly appService: AppService, private newsService: NewsService) { }
 
   @Get()
   @Render("home.hbs")
   async getHello(): Promise<any> {
-    console.log("hello")
     var result = await this.newsService.getLatestNews(10);
     result = this.newsService.removeHtmlTagesforNewDesc(result);
     return {
-      data:result
+      data: { ...result, env: process.env.BASE_URL }
     };
   }
 

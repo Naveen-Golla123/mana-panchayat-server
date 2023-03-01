@@ -1,10 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { join } from 'path';
-// import * as cookieParser from 'cookie-parser';
+import * as cookieParser from 'cookie-parser';
 // import fastifyCookie from '@fastify/cookie';
 // import { contentParser } from 'fastify-file-interceptor';
 import * as hbs from 'express-handlebars';
+import { ConfigService } from '@nestjs/config';
 import {
   FastifyAdapter
 } from '@nestjs/platform-fastify';
@@ -29,15 +30,17 @@ async function bootstrap() {
 
   const adapter = new FastifyAdapter();
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-
+  const configService = app.get(ConfigService);
+  const baseUrl = configService.get<string>('BASE_URL');
   var hbs = require('express-handlebars');
   var helpers = {
     readMeBlock: (id)=>{
       console.log(id)
-      var res = `https://manapanchayat.online/News/${id}`
+      var res = `${baseUrl}/News/${id}`
       return res;
     }
   }
+  app.use(cookieParser());
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.engine('hbs', hbs.engine({

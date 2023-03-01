@@ -130,7 +130,8 @@
                 redirect: 'follow'
             };
 
-            fetch("http://localhost:3000/Auth/signIn", requestOptions)
+            var env = "{{env}}";
+            fetch(`${env}/Auth/signIn`, requestOptions)
                 .then(response => response.json())
                 .then(result => {
                     console.log(result)

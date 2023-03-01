@@ -13,9 +13,13 @@ import { News } from './Entities/News.entity';
 import { Users } from './Entities/Users.entity';
 import { FileUploader } from './Shared/FileUploader';
 import { Utilies } from './Shared/Utlities';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
     TypeOrmModule.forRoot({
       host: "baasu.db.elephantsql.com",
       type: "postgres",
