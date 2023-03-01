@@ -60,4 +60,9 @@ export class News {
     labels: Labels[];
 
     createOnDate: string;
+
+    @Column({
+        default: 0
+    })
+    views: number;
 }
