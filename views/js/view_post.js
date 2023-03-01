@@ -42,7 +42,7 @@ const id = urlParams.get('id')
 console.log(id)
 
 //Fetching data form the API
-fetch("http://localhost:3000/news/"+id, requestOptions)
+fetch("http://localhost:8000/news/"+id, requestOptions)
 .then(response => response.json())
 .then(result => {
 
