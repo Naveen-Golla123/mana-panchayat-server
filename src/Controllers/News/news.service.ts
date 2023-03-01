@@ -28,7 +28,7 @@ export class NewsService {
 
     async getNewsById(newsId) {
         let newsResult = await this.newsRepository.createQueryBuilder("news").leftJoin("news.author",'a').where("news.isDeleted=:isDeleted",{isDeleted:false}).where("news.id=:id",{id:newsId}).addSelect(["news.*","a.firstname","a.lastname"]).getOne();
-        this.newsRepository.createQueryBuilder("news").update().set({views: ()=>"views+1"}).execute();
+        this.newsRepository.createQueryBuilder("news").update().set({views: ()=>"views+1"}).where("news.id=:id",{id:newsId}).execute();
         this.processNews(newsResult);
         return newsResult;
     }
