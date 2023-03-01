@@ -93,4 +93,11 @@ export class NewsService {
     processNews(news: News){
         news.createOnDate = this.utilies.convertDate(news.createdOn);
     }
+
+    removeHtmlTagesforNewDesc(news: News[]): News[] {
+        news.forEach(newsItem => {
+            newsItem.newsDescription = newsItem.newsDescription.replace(/<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g, " ");
+        });
+        return news;
+    }
 }
