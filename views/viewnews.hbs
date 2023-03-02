@@ -256,7 +256,7 @@
                                 <ul>
                                     <!-- <li> <i class="fa-brands fa-instagram"></i> Instagram</li> -->
                                     <a target="_blank"
-                                        href="https://api.whatsapp.com/send?text=">
+                                        href="https://api.whatsapp.com/send?text={{env}}/News/{{id}}">
                                         <li> <i class="fa-brands fa-whatsapp"></i> WhatsApp</li>
                                     </a>
                                     <!-- <li> <i class="fa-brands fa-facebook-f"></i> Facebook</li>
@@ -278,7 +278,7 @@
                                     <span class="input-group-text" id="basic-addon1"><i
                                             class="fa-solid fa-link"></i></span>
                                 </div>
-                                <input id="urlCopy" type="text" class="form-control" placeholder="Url"
+                                <input id="urlCopy" type="text" class="form-control" placeholder="Url" value="{{env}}/News/{{id}}"
                                     aria-label="Share Link" aria-describedby="basic-addon1">
                                 <button id="postUrlCopyButton" class="btn btn-dark"> <i
                                         class="fa-regular fa-copy mr-2"></i> Copy</button>

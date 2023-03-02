@@ -31,7 +31,7 @@ export class NewsController {
     @UseGuards(AuthGuard('jwt'))
     @UseInterceptors(FileInterceptor("file"))
     async createNews(@UploadedFile() file: Express.Multer.File, @Body() createNewsDto: CreateNewsDto, @Req() req: any) {
-        return await this.newsService.createNews(file, createNewsDto,req.user)
+        return await this.newsService.createNews(file, createNewsDto, req.user)
     }
 
     @Patch()
@@ -46,7 +46,7 @@ export class NewsController {
     async getNewsbyId(@Param('id') id) {
         var result = await this.newsService.getNewsById(id)
         console.log(result)
-        return result;
+        return { ...result, env: process.env.BASE_URL };
     }
 
     @Get("/latest/:pageSize")
@@ -55,7 +55,7 @@ export class NewsController {
     }
 
     @Post("delete/:id")
-    async deleteNews(@Param('id') id:number) {
+    async deleteNews(@Param('id') id: number) {
         return await this.newsService.deleteNews(id);
     }
 }
