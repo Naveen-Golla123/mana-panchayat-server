@@ -27,6 +27,15 @@ export class AuthController {
         }
     }
 
+    @Get("signUp")
+    @Render("signup.hbs")
+    signUpPage(@Req() req: Request){
+        return {
+            result: true,
+            env: process.env.BASE_URL
+        }
+    }
+
     @Post("signIn")
     @UseGuards(AuthGuard('local'))
     async signIn(@Body() authDto: AuthDto,@Req() req:any,@Res({ passthrough: true }) res: Response) {
