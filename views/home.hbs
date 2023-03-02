@@ -9,7 +9,8 @@
     <meta property="og:site_name" content="San Roque 2014 Pollos">
     <meta property="og:title" content="San Roque 2014 Pollos" />
     <meta property="og:description" content="Programa de fiestas" />
-    <meta property="og:image" itemprop="image" content="https://des5nqelydebj.cloudfront.net/20230224110027/assets/testimonials/Testimonial-02.jpg">
+    <meta property="og:image" itemprop="image"
+        content="https://des5nqelydebj.cloudfront.net/20230224110027/assets/testimonials/Testimonial-02.jpg">
     <meta property="og:type" content="website" />
     <meta property="og:updated_time" content="1440432930" />
     <!-- <meta name="color-scheme" content="dark light"> -->
@@ -280,10 +281,10 @@
         }
 
         .newsCardDescriptionText {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            display: block;
-            overflow: hidden
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
     </style>
 
@@ -385,23 +386,32 @@
                 <div class="cardu border my-4">
                     <div class="row" id="news_${result[each].id}">
                         <div class="col-12 col-md-3">
-                            <img class="w-100 h-100" src={{this.imgUrl}} alt="" srcset="">
+                            <a href={{readMeBlock this.id}}><img class="w-100 h-100" src={{this.imgUrl}} alt=""
+                                    srcset=""></a>
                         </div>
-                        <div class="col-12 col-md-9 newsCardDescription">
-                            <div class="py-3 px-3">
-                                <h5 class="font-weight-bold">{{this.title}}</h5>
-                                <div class="mt-3 newsCardDescriptionText">
-                                    {{{this.newsDescription}}}
+                        <div class="col-12 col-md-9 newsCardDescription" style="position: relative;">
+                            <div class="py-3 px-3 flex-column" style="height: 100%;display: flex;justify-content: space-between !important;">
+                                <div>
+                                    <a href={{readMeBlock this.id}} style="color: #2E475D;">
+                                        <h5 class="font-weight-bold">{{this.title}}</h5>
+                                    </a>
+                                    <div class="mt-3 newsCardDescriptionText">
+                                        {{{this.newsDescription}}}
+                                    </div>
                                 </div>
 
-                                <div class="d-flex justify-content-between mt-3 row">
 
-                                    <a href={{readMeBlock this.id}} target="_blank" class="col-12 col-md-3 text-theme-primary p-2">Read
+                                <div class="d-flex justify-content-between mt-3 row"
+                                    style="position: relative; bottom: 0px; width: 100%;">
+
+                                    <a href={{readMeBlock this.id}} target="_blank"
+                                        class="col-12 col-md-3 text-theme-primary p-2">Read
                                         More
                                         <i class="fa-solid fa-angles-right ml-1"></i>
                                     </a>
 
-                                    <div class="d-flex justify-content-between justify-content-md-end ju col-12 col-md-9">
+                                    <div
+                                        class="d-flex justify-content-between justify-content-md-end align-items-center ju col-12 col-md-9">
                                         <small class="text-secondary mr-3">
                                             <i
                                                 class="fa-solid fa-location-dot mr-2 text-theme-primary"></i>{{this.location}}
