@@ -15,7 +15,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, "jwt") {
     const cookieExtractor = (req) => {
       var token = null;
       token = req.cookies["panchayatToken"]
-      console.log(token)
       return token;
     };
 

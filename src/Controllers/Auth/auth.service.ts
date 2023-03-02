@@ -26,7 +26,6 @@ export class AuthService {
             firstname: user.firstname,
             lastname: user.lastname
         })
-        console.log(result)
         return {
             access_token: result
         };

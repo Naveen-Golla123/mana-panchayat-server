@@ -8,7 +8,6 @@ export class RequestParser implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     // Fetching cookie and assigning as jwt token.
     //req.headers["Authorization"] = "Bearer " + req.cookies["panchayatToken"]
-    console.log(req.headers)
     if (next) {
       next();
     }

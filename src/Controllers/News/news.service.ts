@@ -34,7 +34,7 @@ export class NewsService {
     }
 
     async getLatestNews(pageSize: number) {
-        var newsresults = await this.newsRepository.createQueryBuilder("news").select().limit(pageSize).orderBy({ "news.createdOn": "DESC" }).getMany();
+        var newsresults = await this.newsRepository.createQueryBuilder("news").select().where("news.isDeleted=:isDeleted",{isDeleted:false}).limit(pageSize).orderBy({ "news.createdOn": "DESC" }).getMany();
         newsresults.forEach(news=>{
             this.processNews(news)
         });

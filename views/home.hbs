@@ -392,9 +392,9 @@
 
         <div id="allPosts">
             <div id="holder">
-                {{#each data}}
+                {{#each data.result}}
                 <div class="cardu border my-4">
-                    <div class="row" id="news_${result[each].id}">
+                    <div class="row" id="news_${this.id}">
                         <div class="col-12 col-md-3">
                             <a href={{readMeBlock this.id}}><img class="w-100 h-100" src={{this.imgUrl}} alt=""
                                     srcset=""></a>

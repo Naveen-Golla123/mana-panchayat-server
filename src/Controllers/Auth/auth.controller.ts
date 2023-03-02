@@ -21,7 +21,6 @@ export class AuthController {
     //@UsePipes(new RequestParser())
     @Render('login.hbs')
     signInPage(@Req() req: Request){
-        console.log(req)
         return {
             result: true,
             env: process.env.BASE_URL
@@ -31,7 +30,6 @@ export class AuthController {
     @Post("signIn")
     @UseGuards(AuthGuard('local'))
     async signIn(@Body() authDto: AuthDto,@Req() req:any,@Res({ passthrough: true }) res: Response) {
-        console.log(req.cookies);
         var token = await this.authService.login(req.user);
         res.cookie("panchayatToken", token.access_token, {maxAge: 99999999, secure: true, sameSite:'none',path: '/'});
         return {

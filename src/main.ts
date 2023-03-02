@@ -35,7 +35,6 @@ async function bootstrap() {
   var hbs = require('express-handlebars');
   var helpers = {
     readMeBlock: (id)=>{
-      console.log(id)
       var res = `${baseUrl}/News/${id}`
       return res;
     }

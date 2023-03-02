@@ -14,7 +14,7 @@ export class AppController {
     var result = await this.newsService.getLatestNews(10);
     result = this.newsService.removeHtmlTagesforNewDesc(result);
     return {
-      data: { ...result, env: process.env.BASE_URL }
+      data: { result, env: process.env.BASE_URL }
     };
   }
 
