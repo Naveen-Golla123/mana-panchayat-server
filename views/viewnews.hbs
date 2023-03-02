@@ -37,11 +37,127 @@
     <!-- Fontawesome Link -->
     <script src="https://kit.fontawesome.com/1a2b0738bb.js" crossorigin="anonymous"></script>
 
+
+    <style>
+        :root {
+                --theme-primary: #FF5C35;
+                --theme-secondary: #FEF4EA;
+                --theme-dark: #213343;
+                --theme-light: #F6F9FC;
+                --theme-white: #FFFFFF;
+                --theme-font-color: #2E475D;
+                --theme-font-family: Lexend Deca, sans-serif;
+                --theme-card-shadow: 0 0 11px #eaf0f6;
+            }
+            .theme-shadow {
+                box-shadow: var(--theme-card-shadow);
+            }
+            .badge-theme-primary{
+                background-color: var(--theme-primary);
+            }
+            /* Theme Nav Bar */
+            .navbar-theme-dark a {
+                color: var(--theme-light) !important;
+            }
+            .navbar-theme-light a {
+                color: var(--theme-dark) !important;
+            }
+            /* Theme Background Colors */
+            .bg-theme-primary {
+                background-color: #FF5C35 !important;
+                color: var(--theme-secondary) !important;
+            }
+            .bg-theme-secondary {
+                background-color: #FEF4EA !important;
+                color: var(--theme-font-color) !important;
+            }
+            .bg-theme-dark {
+                background-color: #FEF4EA !important;
+                color: var(--theme-light) !important;
+            }
+            /* Theme Text Colors */
+            .text-theme-primary {
+                color: var(--theme-primary) !important;
+            }
+            .text-theme-secondary {
+                color: var(--theme-secondary) !important;
+            }
+            .text-theme-dark {
+                color: var(--theme-dark) !important;
+            }
+            body {
+                font-family: var(--theme-font-family);
+                color: var(--theme-font-color);
+                background-color: var(--theme-light);
+            }
+            #newsTitle{
+                font-weight: bold;
+                color: var(--theme-font-color);
+            }
+    </style>
+
+
+
+
+
+
+
+
+
+
 </head>
 
 <body>
 
-    <div class="container mt-5" style="max-width:50rem">
+
+
+    <!-- Nav Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 theme-shadow">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>        
+        <div class="container" style="max-width:60rem">
+            <div class="w-100 text-center">
+                <a class="navbar-brand m-auto font-weight-bold" href="#">
+                    <img width="120rem" height="65rem" src="../original_Logo.webp" alt="" class="text-center">
+                </a>                
+            </div>  
+
+            <div class="collapse navbar-collapse text-theme-primary" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto mt-3">
+                    <li class="nav-item active text-center badge badge-theme-primary">
+                        <a class="nav-link text-theme-secondary" href="#"> <i class="fa fa-home mr-2"></i> Home 
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                </ul>
+                {{!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
+                            class="fa-solid fa-magnifying-glass"></i></button>
+                </form> --}}
+
+
+            </div>             
+
+
+
+
+
+
+        </div>
+    </nav>
+
+
+
+
+
+
+
+
+
+    <div class="container mt-5" style="max-width:60rem">
 
         <!-- Both Side by Side Boxes -->
         <div class="grid-box">
@@ -51,18 +167,35 @@
 
                 <!-- Blog Post Section (Title, Author & Time, News Content) -->
                 <div id="blogPostArea">
-                    <h1 id="newsTitle" class="my-3"></h1>
+                    <h1 id="newsTitle" class="my-3">{{title}}</h1>
                     <hr>
-                    <div class="mb-3 text-secondary d-flex justify-content-between">
-                        <div class="p-1">
-                            <i class="fa-solid fa-user mr-2"></i>By <span id="authorName">{{firstname}}
-                                {{lastname}}</span>
-                            <i class="fa-solid fa-calendar-days mx-2"></i> <span id="publishedDate">{{createOnDate}}
-                            </span>
-                        </div>
-                        <div class="border p-1 px-3 cursor-point" data-toggle="modal" data-target="#sharePopUpModal">
-                            <i class="fa-solid fa-share-nodes mr-2"></i>Share
-                        </div>
+                    <div class="mb-3">
+                        <div class="row text-secondary d-flex justify-content-between">
+                            <div class="col-12 col-md-10">
+                                <div class="p-1 row">
+
+                                    <div class="ml-3 col-sm-auto col-md-auto my-2">
+                                        <i class="fa-solid fa-eye mr-2 text-theme-primary"></i>
+                                        <span id="authorName">{{views}}</span>
+                                    </div>
+                                    <div class="ml-3 col-sm-auto col-md-auto my-2">
+                                        <i class="fa-solid fa-user mr-2 text-theme-primary"></i>
+                                        <span id="authorName">{{firstname}}{{lastname}}</span>
+                                    </div>
+                                    <div class="ml-3 col-sm-auto col-md-auto my-2">
+                                        <i class="fa-solid fa-calendar-days mr-2 text-theme-primary"></i> 
+                                        <span id="publishedDate">{{createOnDate}}</span>
+                                    </div>
+
+
+                                </div>                                
+                            </div>
+                            <div class="col-12 col-md-2">
+
+                                <div class="border p-1 px-3 cursor-point text-center my-2" data-toggle="modal" data-target="#sharePopUpModal">
+                                    <i class="fa-solid fa-share-nodes mr-2"></i>Share
+                                </div>                                
+                            </div>
 
                     </div>
 
@@ -72,6 +205,11 @@
 
                     <div class="my-5">
                         <hr>
+                    </div>
+                    <div>
+                        <div class="btn btn-block bg-theme-primary">
+                            <i class="fa-solid fa-share-nodes mr-2"></i>Share
+                        </div>
                     </div>
 
                 </div>

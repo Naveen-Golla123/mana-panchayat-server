@@ -76,7 +76,9 @@
 
         }
 
-
+        .badge-theme-primary{
+            background-color: var(--theme-primary);
+        }
 
 
 
@@ -295,14 +297,14 @@
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 theme-shadow">
         <div class="flex flex-row container" style="justify-content: space-between;">
-            <div>
+            <div class="w-100 text-center">
                 <a class="navbar-brand m-auto font-weight-bold" href="#">
                     <img width="120rem" height="65rem" src="original_Logo.webp" alt="" class="text-center">
                 </a>
             </div>
 
             <div class="collapse navbar-collapse text-theme-primary" style="justify-content: flex-end;" id="navbarSupportedContent">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item active text-center badge badge-theme-primary">
                         <a class="nav-link text-theme-secondary" href="#"> <i class="fa fa-home mr-2"></i> Home
                             <span class="sr-only">(current)</span>
@@ -318,10 +320,7 @@
 
             </div>
 
-
-
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            <button class="navbar-toggler text-theme-primary" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -416,13 +415,16 @@
                                     style="position: relative; bottom: 0px; width: 100%;">
 
                                     <a href={{readMeBlock this.id}} target="_blank"
-                                        class="col-12 col-md-3 text-theme-primary p-2">Read
-                                        More
-                                        <i class="fa-solid fa-angles-right ml-1"></i>
+                                       class="col-12 col-md-3 text-theme-primary p-2">
+                                       Read More
+                                       <i class="fa-solid fa-angles-right ml-1"></i>
                                     </a>
 
-                                    <div
-                                        class="d-flex justify-content-between justify-content-md-end align-items-center ju col-12 col-md-9">
+                                    <div class="d-flex justify-content-between justify-content-md-end align-items-center ju col-12 col-md-9">
+                                        <small class="text-secondary mr-3">
+                                            <i
+                                                class="fa-solid fa-eye mr-2 text-theme-primary"></i>{{this.views}}
+                                        </small>
                                         <small class="text-secondary mr-3">
                                             <i
                                                 class="fa-solid fa-location-dot mr-2 text-theme-primary"></i>{{this.location}}
