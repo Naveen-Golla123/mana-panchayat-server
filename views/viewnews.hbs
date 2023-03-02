@@ -19,7 +19,7 @@
     <meta property="og:type" content="website">
     <!-- <meta name="color-scheme" content="dark light"> -->
     <!-- Local CSS Link -->
-    {{!-- <link rel="stylesheet" href="./css/style.css"> --}}
+    <link rel="stylesheet" href="/css/style.css">
 
     <!-- Bootstrap Links -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
@@ -37,74 +37,6 @@
     <!-- Fontawesome Link -->
     <script src="https://kit.fontawesome.com/1a2b0738bb.js" crossorigin="anonymous"></script>
 
-
-    <style>
-        :root {
-                --theme-primary: #FF5C35;
-                --theme-secondary: #FEF4EA;
-                --theme-dark: #213343;
-                --theme-light: #F6F9FC;
-                --theme-white: #FFFFFF;
-                --theme-font-color: #2E475D;
-                --theme-font-family: Lexend Deca, sans-serif;
-                --theme-card-shadow: 0 0 11px #eaf0f6;
-            }
-            .theme-shadow {
-                box-shadow: var(--theme-card-shadow);
-            }
-            .badge-theme-primary{
-                background-color: var(--theme-primary);
-            }
-            /* Theme Nav Bar */
-            .navbar-theme-dark a {
-                color: var(--theme-light) !important;
-            }
-            .navbar-theme-light a {
-                color: var(--theme-dark) !important;
-            }
-            /* Theme Background Colors */
-            .bg-theme-primary {
-                background-color: #FF5C35 !important;
-                color: var(--theme-secondary) !important;
-            }
-            .bg-theme-secondary {
-                background-color: #FEF4EA !important;
-                color: var(--theme-font-color) !important;
-            }
-            .bg-theme-dark {
-                background-color: #FEF4EA !important;
-                color: var(--theme-light) !important;
-            }
-            /* Theme Text Colors */
-            .text-theme-primary {
-                color: var(--theme-primary) !important;
-            }
-            .text-theme-secondary {
-                color: var(--theme-secondary) !important;
-            }
-            .text-theme-dark {
-                color: var(--theme-dark) !important;
-            }
-            body {
-                font-family: var(--theme-font-family);
-                color: var(--theme-font-color);
-                background-color: var(--theme-light);
-            }
-            #newsTitle{
-                font-weight: bold;
-                color: var(--theme-font-color);
-            }
-    </style>
-
-
-
-
-
-
-
-
-
-
 </head>
 
 <body>
@@ -113,20 +45,20 @@
 
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 theme-shadow">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>        
+            </button>         --}}
         <div class="container" style="max-width:60rem">
-            <div class="w-100 text-center">
-                <a class="navbar-brand m-auto font-weight-bold" href="{{env}}">
+            <div class="w-100 text-center text-lg-left">
+                <a class="navbar-brand font-weight-bold" href="{{env}}">
                     <img width="120rem" height="65rem" src="../original_Logo.webp" alt="" class="text-center">
                 </a>                
             </div>  
 
-            <div class="collapse navbar-collapse text-theme-primary" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto mt-3">
-                    <li class="nav-item active text-center badge badge-theme-primary">
+            <div class="w-100 mt-3 mt-lg-0 d-flex justify-content-center justify-content-lg-end" id="navbarSupportedContent">
+                <ul class="navbar-nav ">
+                    <li class="nav-item active badge badge-theme-primary">
                         <a class="nav-link text-theme-secondary" href="{{env}}"> <i class="fa fa-home mr-2"></i> Home 
                             <span class="sr-only">(current)</span>
                         </a>
@@ -151,16 +83,10 @@
 
 
 
-
-
-
-
-
-
-    <div class="container mt-5" style="max-width:60rem">
+    <div class="container mt-5 bg-white p-3" style="max-width:60rem">
 
         <!-- Both Side by Side Boxes -->
-        <div class="grid-box">
+        <div class="">
 
             <!-- Left Side Box -->
             <div class="">
@@ -175,28 +101,34 @@
                             <div class="col-12 col-md-10">
                                 <div class="p-1 row">
 
-                                    <div class="ml-3 col-sm-auto col-md-auto my-2">
+                                    {{!-- Views --}}
+                                    <div class="col-3 col-md-auto my-2">
                                         <i class="fa-solid fa-eye mr-2 text-theme-primary"></i>
                                         <span id="authorName">{{views}}</span>
                                     </div>
-                                    <div class="ml-3 col-sm-auto col-md-auto my-2">
+                                    {{!-- Date --}}
+                                    <div class="col-9 col-md-auto my-2">
+                                        <i class="fa-solid fa-calendar-days mr-2 text-theme-primary"></i> 
+                                        <span id="publishedDate">{{createOnDate}}</span>
+                                    </div>                                    
+                                    {{!-- Author --}}
+                                    <div class="col-12 col-md-auto my-2">
                                         <i class="fa-solid fa-user mr-2 text-theme-primary"></i>
                                         <span id="authorName">{{author.firstname}} {{author.lastname}}</span>
                                     </div>
-                                    <div class="ml-3 col-sm-auto col-md-auto my-2">
-                                        <i class="fa-solid fa-calendar-days mr-2 text-theme-primary"></i> 
-                                        <span id="publishedDate">{{createOnDate}}</span>
-                                    </div>
+
 
 
                                 </div>                                
                             </div>
-                            <div class="col-12 col-md-2">
-
-                                <div class="border p-1 px-3 cursor-point text-center my-2" data-toggle="modal" data-target="#sharePopUpModal">
-                                    <i class="fa-solid fa-share-nodes mr-2"></i>Share
-                                </div>                                
+                            <div class="col-12 col-md-2 my-3 my-md-0">
+                                <a href="https://api.whatsapp.com/send?text={{env}}/News/{{id}}">
+                                    <div class="btn btn-success btn-block btn-lg-inline px-3 text-center text-theme-secondary my-2">
+                                        <i class="fa-brands fa-whatsapp mr-2"></i>Share
+                                    </div>    
+                                </a>                            
                             </div>
+                        </div>    
 
                     </div>
 
@@ -209,129 +141,63 @@
                     </div>
                     <div>
                         <a href="https://api.whatsapp.com/send?text={{env}}/News/{{id}}">
-                        <div class="btn btn-block bg-theme-primary">
-                            <i class="fa-solid fa-share-nodes mr-2"></i>Share
+                        <div class="btn btn-block btn-success">
+                            <i class="fa-brands fa-whatsapp mr-2"></i>Share
                         </div>
                         </a>
                     </div>
 
                 </div>
+            </div>
 
-                <!-- Tags -->
-                <!-- <div class="tags-container">
-                        
-                        <ul>
-                            <li> <i class="fa-solid fa-tags"></i> Tags</li>
-                            <li>Technology</li>
-                            <li>Sports</li>
-                            <li>Poltical</li>
-                            <li>Educaion</li>
-                            <li>Village Updates</li>
-                        </ul>
-                    </div> -->
+        </div>
+    </div>
 
-                <!-- Share -->
-                <!-- <div class="share-container my-5">
-                        
-                        <ul>
-                            <li> <i class="fa-solid fa-share-nodes"></i> Share</li>
-                            <li> <i class="fa-brands fa-whatsapp"></i> WhatsApp</li>
-                            <li> <i class="fa-brands fa-facebook-f"></i> Facebook</li>
-                            <li> <i class="fa-brands fa-twitter"></i> Twitter</li>
-                            <li data-toggle="modal" data-target="#sharePopUpModal"> <i class="fa-solid fa-share-nodes"></i> Share to other</li>
-                        </ul>
-                    </div> -->
 
-                <!-- Share Pop Modal -->
-                <div class="modal fade" id="sharePopUpModal" tabindex="-1" role="dialog"
-                    aria-labelledby="sharePopUpModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Share to other apps</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body share_body">
 
-                                <ul>
-                                    <!-- <li> <i class="fa-brands fa-instagram"></i> Instagram</li> -->
-                                    <a target="_blank"
-                                        href="https://api.whatsapp.com/send?text={{env}}/News/{{id}}">
-                                        <li> <i class="fa-brands fa-whatsapp"></i> WhatsApp</li>
-                                    </a>
-                                    <!-- <li> <i class="fa-brands fa-facebook-f"></i> Facebook</li>
-                                    <li> <i class="fa-brands fa-twitter"></i> Twitter</li>
-                                    <li> <i class="fa-brands fa-telegram"></i> Telegram</li>
-                                    <li> <i class="fa-brands fa-pinterest"></i> Pinterest</li>
-                                    <li> <i class="fa-brands fa-reddit-alien"></i> Reddit</li>
-                                    <li> <i class="fa-regular fa-envelope"></i> Mail</li> -->
-                                </ul>
 
-                            </div>
+    {{!-- Footer --}}
+    <div class="footer bg-theme-dark py-5 mt-5">
+        <div class="container" style="max-width:60rem">
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="text-center text-md-left">
+                        <img class="w-100" style="max-width:10rem;" src="../original_Logo.webp" alt="">
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mt-3 mt-md-0 text-theme-primary">
+                    <div>
+                        <h4>Follow</h4>
+                        <div>
+                            <a class="text-theme-primary" href="#">
+                                <i class="fa-brands fa-facebook mr-2"></i>Facebook    
+                            </a>
+                        </div>
+                        <div>
+                            <a class="text-theme-primary" href="#"></a>
+                                <i class="fa-brands fa-instagram mr-2"></i>Instagram
+                            </a>    
+                        </div>
+                        <div>
+                            <a class="text-theme-primary" href="#"></a>
+                                <i class="fa-brands fa-linkedin mr-2"></i>LinkedIn
+                            </a>
 
-                            <div>
-                                <hr>
-                            </div>
-
-                            <div class="input-group mb-3 p-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="basic-addon1"><i
-                                            class="fa-solid fa-link"></i></span>
-                                </div>
-                                <input id="urlCopy" type="text" class="form-control" placeholder="Url" value="{{env}}/News/{{id}}"
-                                    aria-label="Share Link" aria-describedby="basic-addon1">
-                                <button id="postUrlCopyButton" class="btn btn-dark"> <i
-                                        class="fa-regular fa-copy mr-2"></i> Copy</button>
-                            </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Previous & Next Page Buttons -->
-                {{!-- <div class="d-flex justify-content-between">
-                    <button class="btn btn-outline-dark">
-                        <i class="fa-solid fa-chevron-left mr-2"></i>Previous
-                    </button>
-                    <button class="btn btn-outline-dark">
-                        Next <i class="fa-solid fa-chevron-right ml-2"></i>
-                    </button>
-                </div> --}}
-
-            </div>
-
-            <!-- Right Side Box -->
-            <div class="">
-
-                <!-- Widget 1 (Labels)
-                    <div class="bg-light border p-1">
-                        <h5>Labels</h5> -->
-                <!-- Tags -->
-                <!-- <div class="tags-container">
-
-                            <ul>
-                                <li>Technology</li>
-                                <li>Sports</li>
-                                <li>Poltical</li>
-                                <li>Educaion</li>
-                                <li>Village Updates</li>
-                            </ul>
-                        </div>
-                    </div> -->
-
-                <!-- Widget 2 (Subscribe Section) -->
-                {{!-- <div class="bg-dark text-white border p-3 mt-3 text-center">
-                    <h5 class="font-weight-bold my-3">Follow by Email</h5>
-                    <small class="">Get Notified About Next Update Direct to Your inbox</small>
-
-                    <input type="text" class="form-control my-3" placeholder="Email Address">
-                    <button class="btn btn-primary btn-block my-3">Subscribe</button>
-                    <small class="">*We promise that we don't spam !</small>
-                </div> --}}
-                <!-- Widget 3 (List Of Posts) -->
-            </div>
+                <div class="col-12 col-md-4 mt-3 mt-md-0">
+                    <div>
+                        <h4>Useful Links</h4>
+                        <ul class="px-3">
+                            <li>Become Author</li>
+                            <li>Contact Us</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>            
         </div>
+
     </div>
 
     <!-- Local Js Link -->

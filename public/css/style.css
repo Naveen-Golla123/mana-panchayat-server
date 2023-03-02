@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Akshar:wght@500&display=swap');
 
 :root{
-    --theme-primary:#FF5C35;
+    --theme-primary:#ff5c35;
     --theme-secondary:#FEF4EA;
     --theme-dark:#213343;
     --theme-light: #F6F9FC;
@@ -13,27 +13,96 @@
 
     --theme-card-shadow: 0 0 11px #eaf0f6;
 
+
+}
+
+.theme-shadow {
+    box-shadow: var(--theme-card-shadow);
+}
+
+.footer{
+    background-image: linear-gradient( 112.1deg,  rgba(32,38,57,1) 11.4%, rgba(63,76,119,1) 70.2% );
+}
+#newsTitle{
+    font-size: 2rem !important;
+    font-weight: bold;
+    color: var(--theme-font-color);
+}
+
+.cardu {
+    border-radius: .5rem;
+    box-shadow: var(--theme-card-shadow);
+    background-color: var(--theme-white);
+    color: var(--theme-font-color);
+
+}
+
+.badge-theme-primary{
+    background-color: var(--theme-primary);
 }
 
 
-/* Nav Bar */
+/* Theme Nav Bar */
+.navbar-theme-dark a {
+    color: var(--theme-light) !important;
+}
 
-.bg-theme-primary{
-    background-color: #FF5C35 !important;
+.navbar-theme-light a {
+    color: var(--theme-dark) !important;
 }
 
 
-body{
-    
-    font-family: 'Akshar', sans-serif;
-    color: var(--theme-primary);
+
+
+/* Theme Background Colors */
+
+.bg-theme-primary {
+    background-color: var(--theme-primary) !important;
+    color: var(--theme-font-color) !important;
 }
 
-body p{
-    font-size: 1.1rem;
-    /* font-family: "open sans"; */
-    font-family: 'Akshar', sans-serif;
+.bg-theme-secondary {
+    background-color: var(--theme-secondary) !important;
+    color: var(--theme-font-color) !important;
+}
 
+.bg-theme-dark {
+    background-color: var(--theme-dark) !important;
+    color: var(--theme-light) !important;
+}
+
+
+/* Theme Text Colors */
+
+.text-theme-primary {
+    color: var(--theme-primary) !important;
+}
+
+.text-theme-secondary {
+    color: var(--theme-secondary) !important;
+}
+
+.text-theme-dark {
+    color: var(--theme-dark) !important;
+}
+
+.text-theme-light {
+    color: var(--theme-light) !important;
+}
+
+.text-theme-font{
+    color: var(--theme-font-color) !important;
+}
+
+
+body {
+    font-family: var(--theme-font-family);
+    color: var(--theme-font-color);
+    background-color: var(--theme-light) !important;
+}
+
+body p {
+    font-size: 1.05rem;
 }
 
 
@@ -41,6 +110,7 @@ body p{
 
 .main-container {
     height: 100vh;
+    background-color: var(--theme-light);
 }
 
 .login-container {
@@ -52,53 +122,11 @@ body p{
 }
 
 
-.card{
-    background-image: url('https://images.unsplash.com/photo-1500622944204-b135684e99fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2922&q=80');
-    background-size: cover;
-}
-
 
 #imgContainer{
-    max-height: 25rem;
-    aspect-ratio: 16/9;
-}
-
-.ad-block{
     width: auto;
-    height: auto;
-    aspect-ratio: 6.4/1;
-    background-color: #E3F6FF;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-weight: bold;
-    font-size: 2rem;
-    color: cadetblue;
-    
-}
-
-.tags-container ul{
-    padding-inline-start: 0px;
-}
-
-.tags-container ul li{
-    list-style: none;
-    display: inline-block;
-    border: .1px solid #4D727E;
-    border-radius: .1rem;
-    padding-inline: .5rem;
-    margin-inline-end: .2rem;
-    margin-top: .5rem;
-    background-color: #EEEEEE;
-    color: #1F4E5F;
-
-}
-
-.tags-container ul li:nth-child(1){
-    background-color: black;
-    color: white;
+    max-height: 30rem;
+    aspect-ratio: 16/9;
 }
 
 .share-container ul{
@@ -118,44 +146,6 @@ body p{
 
 }
 
-.share-container ul li:nth-child(1){
-    background-color: green;
-    color: white;
-}
-
-
-
-.share_body ul{
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
-
-.share_body ul li{
-    max-width: 8rem;
-    max-height: 8rem;
-    padding: 1.3rem;
-    margin: .8rem;
-    list-style: none;
-    text-align: center;
-    /* background-color: aquamarine; */
-    border: .1rem solid black;
-    border-radius: .3rem;
-    cursor: pointer;
-}
-
-.share_body ul li:hover{
-    border: .1rem solid #674188;
-    color: #FFFBF5;
-    background-color: #674188;
-}
-
-.share_body ul li i{
-    display: block;
-    font-size: 1.5rem;
-    margin-block: .8rem;
-}
-
 #newsTitle{
     font-size: 1.9rem;
     font-weight: bold;
@@ -169,15 +159,19 @@ body p{
 }
 
 
-.grid-box{
-    display: grid;
-    grid-template-columns: 2.5fr 1fr;
-    gap: 2rem;
+.newsCardDescriptionText {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
-
 
 @media only screen and (max-width: 600px) {
-    .grid-box{
-       grid-template-columns: 1fr;
-    }  
+ 
+    #newsTitle{
+        font-size: 1.5rem !important;
+        font-weight: bold;
+        color: var(--theme-font-color);
+    }
 }
+
