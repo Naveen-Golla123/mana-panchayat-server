@@ -25,8 +25,8 @@ export class JwtStrategy extends PassportStrategy(Strategy, "jwt") {
     });
   }
 
-  async validate(req: Request, payload: any) {
-
+  async validate(payload: any) {
+    console.log(payload);
     var userContext = { userId: payload.userId, username: payload.username, firstname: payload.firstname, lastname: payload.lastname }
     //this.sharedService.setUserContext(userContext)
     return userContext;
