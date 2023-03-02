@@ -294,20 +294,19 @@
 
     <!-- Nav Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 theme-shadow">
-        <div class="container">
-            <a class="navbar-brand font-weight-bold" href="#">
-                <img width="120rem" height="65rem" src="original_Logo.webp" alt="" class="">
+        <div class="flex flex-row container" style="justify-content: space-between;">
+            <div>
+                <a class="navbar-brand m-auto font-weight-bold" href="#">
+                    <img width="120rem" height="65rem" src="original_Logo.webp" alt="" class="text-center">
+                </a>
+            </div>
 
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse text-theme-primary" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"> <i class="fa fa-home mr-2"></i> Home <span
-                                class="sr-only">(current)</span></a>
+            <div class="collapse navbar-collapse text-theme-primary" style="justify-content: flex-end;" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item active text-center badge badge-theme-primary">
+                        <a class="nav-link text-theme-secondary" href="#"> <i class="fa fa-home mr-2"></i> Home
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </li>
                 </ul>
                 {{!-- <form class="form-inline my-2 my-lg-0">
@@ -315,7 +314,18 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i
                             class="fa-solid fa-magnifying-glass"></i></button>
                 </form> --}}
+
+
             </div>
+
+
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
         </div>
     </nav>
 
@@ -390,7 +400,8 @@
                                     srcset=""></a>
                         </div>
                         <div class="col-12 col-md-9 newsCardDescription" style="position: relative;">
-                            <div class="py-3 px-3 flex-column" style="height: 100%;display: flex;justify-content: space-between !important;">
+                            <div class="py-3 px-3 flex-column"
+                                style="height: 100%;display: flex;justify-content: space-between !important;">
                                 <div>
                                     <a href={{readMeBlock this.id}} style="color: #2E475D;">
                                         <h5 class="font-weight-bold">{{this.title}}</h5>
