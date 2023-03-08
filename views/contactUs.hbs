@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contact Us | Mana Panchayat</title>
+
+    {{> header}}
+
+</head>
+<body>
+
+    {{!-- Contact Us --}}    
+    <div>
+        {{!-- Top Heading --}}
+        <div class="p-5 gradient-green d-flex justify-content-center align-items-center" style="height:16rem">
+            <h1 class="text-white font-weight-bold">Contact Us</h1>
+        </div>
+
+        {{!-- Matter Container --}}
+        <div class="container my-5" style="max-width: 60rem;">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <form class="" style="max-width: 30rem;">
+
+                        <div class="form-group">
+                        <label for="exampleInputPassword1">Full Name</label>
+                        <input type="text" class="form-control" id="">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Message</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Send me Latest News Updates</label>
+                        </div>
+                        <button type="submit" class="btn bg-theme-primary text-theme-light btn-block">Submit</button>
+                    </form>                    
+                </div>
+
+                <div class="col-12 col-md-6 d-none d-md-block">
+                    <div class="h-100 d-flex justify-content-center align-items-center">
+                        <img src="../public/original_Logo.webp" width="280rem" height="150rem" alt="">
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        {{!-- Footer --}}
+        <div>
+            {{> footer}}
+        </div>
+
+    </div>
+
+
+
+
+</body>
+</html>

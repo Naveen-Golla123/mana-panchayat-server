@@ -13,11 +13,22 @@
 
     --theme-card-shadow: 0 0 11px #eaf0f6;
 
+    --theme-gradient-green: radial-gradient( circle farthest-corner at 10% 20%,  rgba(14,174,87,1) 0%, rgba(12,116,117,1) 90% );
+    --theme-gradient-orange: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,209,67,1) 0%, rgba(255,145,83,1) 90% );
+
 
 }
 
 .theme-shadow {
     box-shadow: var(--theme-card-shadow);
+}
+
+
+.gradient-green{
+    background-image: var(--theme-gradient-green);
+}
+.gradient-orange{
+    background-image: var(--theme-gradient-orange);
 }
 
 .footer{
